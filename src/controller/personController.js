@@ -25,8 +25,9 @@ function postPerson(req, res){
 };
 
 function putPerson(req, res){
-  const {email, address, phone, photo} = req.body
-  validator.updatePerson(req.params.id, email, address, phone, photo)
+  const {person_email, person_address, person_phone, person_photo} = req.body
+  console.log(req.params.id);
+  validator.updatePerson(req.params.id, person_email, person_address, person_phone, person_photo)
     .then((data) => {
       response.success(req, res, data, 200);
     })

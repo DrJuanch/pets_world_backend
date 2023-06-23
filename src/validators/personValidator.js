@@ -27,32 +27,33 @@ async function getPerson(filterPerson) {
   return await service.list(filterPerson)
 }
 
-async function updatePerson(id, email, phone, address, photo){
-  if(!id){
-    throw new Error("INVALID ID");
-  }
-  try{
-    const result = await service.update(id, email, phone, address, photo)
-    return result;
-  } catch (err){
-    throw err;
-  }
+function updatePerson(id, email, phone, address, photo){
+  return new Promise ((resolve, reject) => {
+    if(!id){
+      reject("INVALID ID");
+    };
+    const result = service.update(id, email, phone, address, photo);
+    resolve(result);
+  });
 };
 
-async function deletePerson(id) {
-  if (!id) {
-    throw new Error('INVALID DATA');
-  } else {
-    try {
-      const data = await service.remove(id);
-      if (!data) {
-        throw new Error('Person was not found, check id or already deleted')
-      }
-      return;
-    } catch (err) {
-      throw err;
-    }
-  };
+function deletePerson(id) {
+  return new Promise((resolve, reject) => {
+    if (!id) {
+      throw new Error('INVALID DATA');
+    } else {
+      service.remove(id)
+        .then((data) => {
+          if (!data) {
+            reject('Person was not found, check id or already deleted')
+          }
+          resolve()
+        })
+        .catch(err => {
+          reject(err);
+        });
+    };
+  });
 };
 
 module.exports = {

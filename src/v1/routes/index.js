@@ -1,4 +1,4 @@
-const user = require('./person.route')
+const user = require('./person')
 
 const routes = function (server) {
   server.use('/user', user);

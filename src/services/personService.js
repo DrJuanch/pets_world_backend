@@ -1,9 +1,9 @@
 const model = require('../models/personModel')
-const exist = require('../constansts')
+const { existDB } = require('../constansts')
 
-function addPerson(person){
+async function addPerson(person){
   const myPerson = new model(person);
-  myPerson.save();
+  await myPerson.save();
 }
 
 function getPerson(filterPerson){
@@ -34,7 +34,7 @@ async function updatePerson(id, email, phone, address, photo){
 };
 
 async function removePerson(id){
-  if(await exist(id, model)){
+  if(await existDB(id, model)){
     return await model.findByIdAndDelete(id)
   }
   return false;

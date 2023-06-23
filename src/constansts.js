@@ -1,5 +1,5 @@
 async function existDB(id, model){
-  const exist = await model.exist({_id: id});
+  const exist = await model.exists({_id: id});
   return exist
 }
 
