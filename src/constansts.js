@@ -12,7 +12,7 @@ const ERROR_RESPONSES = Object.freeze({
   check_token: "You can't pass from here",
   expired_token: 'Your code has expired',
   blocked: 'User blocked'
-})
+});
 
 module.exports = {
   ERROR_RESPONSES,

@@ -27,7 +27,7 @@ async function getPerson(filterPerson) {
   return await service.list(filterPerson)
 }
 
-function updatePerson(id, email, phone, address, photo){
+function updatePerson(id, email, address, phone, photo){
   return new Promise ((resolve, reject) => {
     if(!id){
       reject("INVALID ID");
