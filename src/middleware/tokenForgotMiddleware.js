@@ -17,4 +17,4 @@ const checkAuthForgot = async (req, res, next) => {
   };
 };
 
-module.exports = checkAuthForgot
+module.exports = { checkAuthForgot };

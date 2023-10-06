@@ -16,4 +16,4 @@ const checkFailedLoginAttempts = async (req, res, next) => {
   next();
 };
 
-module.exports = checkFailedLoginAttempts;
+module.exports = { checkFailedLoginAttempts };
