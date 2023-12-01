@@ -1,4 +1,4 @@
-const express = require('express');
+/* const express = require('express');
 const router = express.Router();
 const controller = require('../../models/trainerModel');
 
@@ -9,3 +9,4 @@ router.delete('/:id', controller.deleteTrainer);
 
 
 module.exports = router;
+ */
