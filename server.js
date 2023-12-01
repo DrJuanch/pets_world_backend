@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/", todoRoutes );
+app.use("/", router );
 app.use('*', (req, res) => {
     res.status(404)
     res.send({ error: 'Not found' })
