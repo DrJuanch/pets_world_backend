@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/", router );
+app.use("/Api/v1", router );
 app.use('*', (req, res) => {
     res.status(404)
     res.send({ error: 'Estas aquí' })
