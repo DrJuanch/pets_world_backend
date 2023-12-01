@@ -2,7 +2,6 @@ const { encrypt } = require('../helpers/handleBcrypt');
 const response = require('../helpers/response');
 const { tokenSign } = require('../helpers/generateToken');
 const personModel = require('../models/personModel');
-const { response } = require('express');
 const error = require('../constansts');
 
 const registerController = async (req, res) => {
