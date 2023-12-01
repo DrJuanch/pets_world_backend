@@ -3,25 +3,33 @@ const { validateResult } = require('../helpers/validatorHelper');
 const { ERROR_RESPONSES } = require('../constansts');
 
 const validateCreatePerson = [
-  check('person_name')
+  check('name')
     .exists()
     .not()
     .isEmpty()
     .withMessage(ERROR_RESPONSES.invalid)
     .isAlpha()
     .withMessage(ERROR_RESPONSES.just_letters),
-  check('person_email')
+  check('email')
     .exists()
     .not()
     .isEmpty()
     .withMessage(ERROR_RESPONSES.invalid)
     .isEmail()
     .withMessage(ERROR_RESPONSES.invalid),
-  check('person_password')
+  check("phone")
     .exists()
     .not()
     .isEmpty()
-    .isLength({ min: 8, max:16 })
+    .isNumeric()
+    .withMessage("El campo phone debe ser un valor numérico")
+    .isLength({ min: 10, max: 10 })
+    .withMessage("El campo phone debe tener una longitud de 10 dígitos"),
+  check('password')
+    .exists()
+    .not()
+    .isEmpty()
+    .isLength({ min: 8, max: 16 })
     .withMessage(ERROR_RESPONSES.invalid)
     .matches(/^(?=.*[A-Z])(?=.*\d).*$/)
     .withMessage(ERROR_RESPONSES.weak_password),
