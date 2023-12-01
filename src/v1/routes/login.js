@@ -12,7 +12,7 @@ const { checkAuthForgot } = require('../../middleware/tokenForgotMiddleware');
 
 const controller = require('../../controller/loginController');
 
-router.post('/', checkFailedLoginAttempts, validateCreate, loginController);
+router.post('/login', checkFailedLoginAttempts, validateCreate, loginController);
 
 router.post('/register', validateCreatePerson, registerController);
 
