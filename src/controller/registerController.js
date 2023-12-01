@@ -7,16 +7,13 @@ const error = require('../constansts');
 
 const registerController = async (req, res) => {
   try {
-    const {name, email, address, id, password, phone, photo} = req.body;
+    const {name, email, phone, password} = req.body;
     const passwordHash =  await encrypt(password);
     const registerUser = await personModel.create({
       person_name : name,
       person_email : email,
-      person_address : address,
-      person_id : id,
       person_password: passwordHash,
       person_phone: phone,
-      person_photo: photo
     })
     response.success(req,res, {data: registerUser}, 200);
   } catch (e) {

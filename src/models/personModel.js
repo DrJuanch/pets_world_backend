@@ -16,12 +16,10 @@ const myPersonSchema = new Schema(
     },
     person_address:{
       type: String,
-      required: true
     },
     person_id:{
       type: String,
       unique : true,
-      required: true
     },
     person_password:{
       type:String,
@@ -29,11 +27,9 @@ const myPersonSchema = new Schema(
     },
     person_phone:{
       type:Number,
-      required:true
     },
     person_photo:{
       type:String,
-      required:true
     }
   },
 
