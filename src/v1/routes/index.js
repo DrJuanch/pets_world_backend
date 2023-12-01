@@ -12,7 +12,7 @@ fs.readdirSync(pathRouter).filter((file) => {
     const fileWithOutExt = removeExtension(file);
     const skip = ['index'].includes(fileWithOutExt);
     if (!skip) {
-         router.use(`/${fileWithOutExt}`, require(`./${fileWithOutExt}`));
+        router.use(`/${fileWithOutExt}`, require(`./${fileWithOutExt}`));
     }
 });
 

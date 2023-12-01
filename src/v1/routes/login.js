@@ -10,8 +10,6 @@ const { recoveryController } = require('../../controller/recoveryController');
 const { checkFailedLoginAttempts } = require('../../middleware/failedLoginAttemps');
 const { checkAuthForgot } = require('../../middleware/tokenForgotMiddleware');
 
-const controller = require('../../controller/loginController');
-
 router.post('/login', checkFailedLoginAttempts, validateCreate, loginController);
 
 router.post('/register', validateCreatePerson, registerController);
