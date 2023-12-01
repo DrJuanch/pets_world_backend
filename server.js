@@ -11,10 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/Api/v1", router );
-app.use('*', (req, res) => {
-    res.status(404)
-    res.send({ error: 'Estas aquí' })
-})
 
 dataBaseConnection()
 app.listen(PORT, () => {
