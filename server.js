@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3000;
 const dataBaseConnection = require('./config/mongo');
 const router = require('./src/v1/routes/index');
 const cors = require('cors');
@@ -9,9 +8,13 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false})) //
-router(app);
+app.use(express.json());
+
+app.use("/", todoRoutes );
+app.use('*', (req, res) => {
+    res.status(404)
+    res.send({ error: 'Not found' })
+})
 
 dataBaseConnection()
 app.listen(PORT, () => {
