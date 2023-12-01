@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/", router );
 app.use('*', (req, res) => {
     res.status(404)
-    res.send({ error: 'Not found' })
+    res.send({ error: 'Estas aquí' })
 })
 
 dataBaseConnection()
