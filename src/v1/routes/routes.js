@@ -1,3 +1,5 @@
+
+
 const routes = function (server){
   server.use('/login', require('./login.route'));
   server.use('/person', require('./person.route'));

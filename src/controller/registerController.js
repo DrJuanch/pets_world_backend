@@ -1,6 +1,5 @@
 const { encrypt } = require('../helpers/handleBcrypt');
 const response = require('../helpers/response');
-const { tokenSign } = require('../helpers/generateToken');
 const personModel = require('../models/personModel');
 const error = require('../constansts');
 
@@ -15,7 +14,7 @@ const registerController = async (req, res) => {
       person_phone: phone,
     })
     response.success(req,res, {data: registerUser}, 200);
-  } catch (e) {
+  } catch (err) {
     response.error(req, res, error.ERROR_RESPONSES.unexpected, 500, err)
   };
 };

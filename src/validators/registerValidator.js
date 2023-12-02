@@ -1,5 +1,4 @@
-const { check } = require('express-validator');
-const { validateResult } = require('../helpers/validatorHelper');
+const { check, validationResult } = require('express-validator');
 const { ERROR_RESPONSES } = require('../constansts');
 
 const validateCreatePerson = [
@@ -7,9 +6,7 @@ const validateCreatePerson = [
     .exists()
     .not()
     .isEmpty()
-    .withMessage(ERROR_RESPONSES.invalid)
-    .isAlpha()
-    .withMessage(ERROR_RESPONSES.just_letters),
+    .withMessage(ERROR_RESPONSES.invalid),
   check('email')
     .exists()
     .not()
@@ -33,9 +30,13 @@ const validateCreatePerson = [
     .withMessage(ERROR_RESPONSES.invalid)
     .matches(/^(?=.*[A-Z])(?=.*\d).*$/)
     .withMessage(ERROR_RESPONSES.weak_password),
-  (req, res, next) => {
-    validateResult(req, res, next);
-  },
-];
+    (req, res, next) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      next();
+    },
+  ];
 
-module.exports = { validateCreatePerson };
+  module.exports = { validateCreatePerson };
