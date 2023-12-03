@@ -37,6 +37,9 @@ const myPersonSchema = new Schema(
     },
     have_sign_in: {
       type: Number, default: 0
+    },
+    confirmation_token: {
+      type: String
     }
   },
 

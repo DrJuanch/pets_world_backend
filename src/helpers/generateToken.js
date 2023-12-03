@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const crypto = require('crypto');
 
 const tokenSign = async (user) => {
   return jwt.sign(
@@ -17,15 +18,20 @@ const verifyToken = async (token) => {
     return jwt.verify(token, process.env.JWT_SECRET)
   } catch (e) {
     return null
-  }
-}
+  };
+};
 
 const decodeSign = (token) => {
   return jwt.decode(token, null)
-}
+};
+
+const generateUniqueToken = () => {
+  return crypto.randomBytes(20).toString('hex');
+};
 
 module.exports = {
   tokenSign,
   decodeSign,
-  verifyToken
+  verifyToken,
+  generateUniqueToken
 }
