@@ -30,13 +30,17 @@ const validateCreatePerson = [
     .withMessage(ERROR_RESPONSES.invalid)
     .matches(/^(?=.*[A-Z])(?=.*\d).*$/)
     .withMessage(ERROR_RESPONSES.weak_password),
-    (req, res, next) => {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
-      next();
-    },
-  ];
+  check('dateOfBirth')
+    .exists()
+    .isISO8601()
+    .withMessage('El campo date_of_birth debe ser una fecha válida en formato YYYY-MM-DD'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+];
 
-  module.exports = { validateCreatePerson };
+module.exports = { validateCreatePerson };

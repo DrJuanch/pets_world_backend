@@ -30,6 +30,10 @@ const myPersonSchema = new Schema(
     },
     person_photo:{
       type:String,
+    },
+    date_of_birth: {
+      type: Date,
+      required: true
     }
   },
 

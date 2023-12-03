@@ -5,13 +5,14 @@ const error = require('../constansts');
 
 const registerController = async (req, res) => {
   try {
-    const {name, email, phone, password} = req.body;
+    const {name, dateOfBirth, email, phone, password} = req.body;
     const passwordHash =  await encrypt(password);
     const registerUser = await personModel.create({
       person_name : name,
       person_email : email,
       person_password: passwordHash,
       person_phone: phone,
+      date_of_birth: dateOfBirth
     })
     response.success(req,res, {data: registerUser}, 200);
   } catch (err) {
