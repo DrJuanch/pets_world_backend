@@ -1,6 +1,6 @@
 const { tokenForgot } = require('../helpers/forgotToken');
-const userModel = require('../models/user')
-const { transporter } = require('../../config/mailer')
+const userModel = require('../models/personModel');
+const { transporter } = require('../../config/mailer');
 
 const forgotController = async (req, res) => {
 
