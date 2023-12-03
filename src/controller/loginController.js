@@ -23,6 +23,7 @@ const loginController = async (req, res) => {
       }
       const haveSignIn = user.have_sign_in;
       res.header('Have-Sign-In', haveSignIn);
+      res.header('Access-Control-Expose-Headers', 'Have-Sign-In');
       const tokenSession = await tokenSign(user);
       response.success(req, res, {data: user, tokenSession}, 200);
       if (user.failedLoginAttempts > 0) {
