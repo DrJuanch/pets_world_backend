@@ -2,7 +2,7 @@ const { tokenForgot } = require('../helpers/forgotToken');
 const userModel = require('../models/user')
 const { transporter } = require('../../config/mailer')
 
-const forgotCtrl = async (req, res) => {
+const forgotController = async (req, res) => {
 
   try {
 
@@ -93,6 +93,6 @@ const forgotCtrl = async (req, res) => {
     res.status(500)
     res.send({ error: 'Something happened' })
   }
-}
+};
 
-module.exports = { forgotCtrl }
+module.exports = { forgotController }
