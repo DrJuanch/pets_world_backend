@@ -8,12 +8,22 @@ const loginController = async (req, res) => {
   try {
     const { person_email, person_password } = req.body;
     const user = await personModel.findOne({ person_email });
+
+    if (!user) {
+      return response(req, res, error.ERROR_RESPONSES.not_found, 401);
+    }
+
     const failedLoginAttempts = user.failedLoginAttempts + 1;
     const comparing = await compare(person_password, user.person_password);
 
-    const tokenSession = await tokenSign(user);
-
     if(comparing){
+      if (user.have_sign_in == 0){
+        user.have_sign_in += 1;
+        return;
+      }
+      const haveSignIn = user.have_sign_in;
+      res.header('Have-Sign-In', haveSignIn);
+      const tokenSession = await tokenSign(user);
       response.success(req, res, {data: user, tokenSession}, 200);
       user.failedLoginAttempts = 0;
       user.save();

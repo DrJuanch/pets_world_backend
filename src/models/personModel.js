@@ -34,6 +34,9 @@ const myPersonSchema = new Schema(
     date_of_birth: {
       type: Date,
       required: true
+    },
+    have_sign_in: {
+      type: Number, default: 0
     }
   },
 
