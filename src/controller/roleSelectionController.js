@@ -5,9 +5,7 @@ const { ERROR_RESPONSES } = require('../constansts');
 
 const selectRoleController = async (req, res) => {
   try {
-    const { role, pet_name, pet_age } = req.body;
-    const email = req.headers['user-email'];
-    console.log(req.headers);
+    const { role, pet_name, pet_age, email } = req.body;
     if (!role) {
       throw new Error("Please provide a valid role");
     }

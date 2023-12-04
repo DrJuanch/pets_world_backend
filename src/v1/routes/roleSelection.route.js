@@ -15,6 +15,13 @@ router.post('/', [
     .not()
     .isEmpty()
     .withMessage(ERROR_RESPONSES.invalid),
+    check('email')
+    .exists()
+    .not()
+    .isEmpty()
+    .withMessage(ERROR_RESPONSES.invalid)
+    .isEmail()
+    .withMessage(ERROR_RESPONSES.invalid),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
