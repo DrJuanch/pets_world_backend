@@ -12,8 +12,7 @@ const loginController = async (req, res) => {
     if (!user) {
       return response(req, res, error.ERROR_RESPONSES.not_found, 401);
     }
-
-    console.log('click');
+    
     const failedLoginAttempts = user.failedLoginAttempts + 1;
     const comparing = await compare(person_password, user.person_password);
 

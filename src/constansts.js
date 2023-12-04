@@ -14,6 +14,7 @@ const ERROR_RESPONSES = Object.freeze({
   blocked: 'User blocked',
   weak_password: 'Password should have at least one uppercase and one number',
   just_letters: 'Just insert letters'
+  
 });
 
 module.exports = {

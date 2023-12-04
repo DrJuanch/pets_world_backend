@@ -4,7 +4,7 @@ const tokenForgot = async (user) => {
   return jwt.sign(
     {
       _id: user._id,
-      email: user.email
+      person_email: user.email
     },
     process.env.JWT_SECRET_FORGOT,
     {
@@ -19,4 +19,9 @@ const verifyTokenForgot = async (token) => {
   } catch (e) {
     return null
   }
+}
+
+module.exports = {
+  tokenForgot,
+  verifyTokenForgot
 }

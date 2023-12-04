@@ -40,6 +40,10 @@ const myPersonSchema = new Schema(
     },
     confirmation_token: {
       type: String
+    },
+    role:{
+      type:String,
+      default: 'user'
     }
   },
 

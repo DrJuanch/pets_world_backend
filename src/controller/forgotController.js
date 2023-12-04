@@ -1,12 +1,14 @@
 const { tokenForgot } = require('../helpers/forgotToken');
 const userModel = require('../models/personModel');
 const { transporter } = require('../../config/mailer');
+const response = require('../helpers/response');
+const constantErrors = require('../constansts');
 
 const forgotController = async (req, res) => {
 
   try {
 
-    const user = await userModel.findOne({ email: req.body.email })
+    const user = await userModel.findOne({ person_email: req.body.email })
     if (!user) {
       res.status(409)
       res.send({
@@ -16,9 +18,8 @@ const forgotController = async (req, res) => {
     }
 
     const tokenForget = await tokenForgot(user)
-    const emailUser = process.env.USER;
     const mailOptions = {
-      from: emailUser,
+      from: process.env.USER,
       to: req.body.email,
       subject: 'Recuperación de contraseña de Pets World',
       html: `
@@ -82,11 +83,9 @@ const forgotController = async (req, res) => {
     };
     transporter.sendMail(mailOptions, (error) => {
       if (error) {
-        res.status(409)
-        res.send('Error al enviar correo electrónico.', error);
+        response.error(req, res, constantErrors.ERROR_RESPONSES.unexpected, 409, error);
       } else {
-        res.status(200);
-        res.send('Correo electrónico. Enviado Exitosamente');
+        response.success(req, res, 'Mail sent!', 200);
       }
     });
   } catch (e) {
