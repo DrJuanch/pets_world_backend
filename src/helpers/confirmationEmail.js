@@ -1,4 +1,5 @@
 const { transporter } = '../../config/mailer.js';
+const userEmail = process.env.USER;
 
 const sendConfirmationEmail = async (recipientEmail, confirmationToken) => {
   try {
@@ -9,7 +10,7 @@ const sendConfirmationEmail = async (recipientEmail, confirmationToken) => {
       html: `<p>Please click <a href="http://yourapp.com/confirm/${confirmationToken}">here</a> to confirm your email.</p>`,
     };
 
-    await transporter.sendMail(mailOptions);
+    //await transporter(mailOptions);
     console.log('Confirmation email sent successfully.');
   } catch (error) {
     console.error('Error sending confirmation email:', error);

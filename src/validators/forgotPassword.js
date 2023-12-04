@@ -1,7 +1,6 @@
 const { check } = require('express-validator');
 const { validateResult } = require('../helpers/validatorHelper');
 const { ERROR_RESPONSES } = require('../constansts');
-const { error } = require('../helpers/response');
 
 const validateForgot = [
   check('email')
