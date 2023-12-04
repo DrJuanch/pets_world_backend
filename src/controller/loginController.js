@@ -12,12 +12,12 @@ const loginController = async (req, res) => {
     if (!user) {
       return response(req, res, error.ERROR_RESPONSES.not_found, 401);
     }
-    
-    const failedLoginAttempts = user.failedLoginAttempts + 1;
+
+    const failedLoginAttempts = user.failedLoginAttempts += 1;
     const comparing = await compare(person_password, user.person_password);
 
     if(comparing){
-      if (user.have_sign_in == 0){
+      if (user.have_sign_in == 0 || user.have_sign_in == 1){
         user.have_sign_in += 1;
       }
       const haveSignIn = user.have_sign_in;
