@@ -21,8 +21,8 @@ const registerController = async (req, res) => {
     })
 
     await sendConfirmationEmail(email, confirmationToken);
-
     response.success(req,res, {data: registerUser}, 200);
+    
   } catch (err) {
     response.error(req, res, error.ERROR_RESPONSES.unexpected, 500, err)
   };
