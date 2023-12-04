@@ -27,7 +27,7 @@ const selectRoleController = async (req, res) => {
       response.success(req, res, {data: registerPet}, 200)
 
     }
-    response.success(req, res, { role: selectedRole }, 200);
+    response.success(req, res, { role: role }, 200);
   } catch (err) {
     response.error(req, res, ERROR_RESPONSES.unexpected, 500, err);
   }
