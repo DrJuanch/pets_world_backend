@@ -13,7 +13,8 @@ const loginController = async (req, res) => {
       return response(req, res, error.ERROR_RESPONSES.not_found, 401);
     }
 
-    const failedLoginAttempts = user.failedLoginAttempts += 1;
+    user.failedLoginAttempts += 1;
+
     const comparing = await compare(person_password, user.person_password);
 
     if(comparing){
