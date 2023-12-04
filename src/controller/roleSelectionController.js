@@ -5,15 +5,18 @@ const { ERROR_RESPONSES } = require('../constansts');
 
 const selectRoleController = async (req, res) => {
   try {
-    console.log('click');
     const { role, pet_name, pet_age } = req.body;
-    const email = req.headers['User-Email'];
-    if (!role || !email) {
+    const email = req.headers['user-email'];
+    console.log(req.headers);
+    if (!role) {
       throw new Error("Please provide a valid role");
     }
 
     if (role === 'user') {
       const user = await personModel.findOne({ person_email: email })
+      if (!user) {
+        throw new Error("User not found");
+      }
       const registerPet = await petModel.create({
         pet_owner: user._id,
         pet_name: pet_name,
