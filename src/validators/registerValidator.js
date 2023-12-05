@@ -34,6 +34,14 @@ const validateCreatePerson = [
     .exists()
     .isISO8601()
     .withMessage('El campo date_of_birth debe ser una fecha válida en formato YYYY-MM-DD'),
+  check('personId')
+    .exists()
+    .not()
+    .isEmpty()
+    .isNumeric()
+    .withMessage("El campo phone debe ser un valor numérico")
+    .isLength({ min: 10, max: 10 })
+    .withMessage("El campo phone debe tener una longitud de 10 dígitos"),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

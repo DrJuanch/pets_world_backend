@@ -7,7 +7,7 @@ const { sendConfirmationEmail } = require('../helpers/confirmationEmail');
 
 const registerController = async (req, res) => {
   try {
-    const {name, dateOfBirth, email, phone, password} = req.body;
+    const {name, dateOfBirth, email, phone, password, personId} = req.body;
     const passwordHash =  await encrypt(password);
     const confirmationToken = generateUniqueToken();
 
@@ -17,12 +17,13 @@ const registerController = async (req, res) => {
       person_password: passwordHash,
       person_phone: phone,
       date_of_birth: dateOfBirth,
+      person_id: personId,
       confirmation_token: confirmationToken
     })
 
     await sendConfirmationEmail(email, confirmationToken);
     response.success(req,res, {data: registerUser}, 200);
-    
+
   } catch (err) {
     response.error(req, res, error.ERROR_RESPONSES.unexpected, 500, err)
   };

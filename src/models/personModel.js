@@ -19,6 +19,8 @@ const myPersonSchema = new Schema(
     },
     person_id:{
       type: String,
+      unique: true,
+      required: true
     },
     person_password:{
       type:String,
