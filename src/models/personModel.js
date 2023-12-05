@@ -12,25 +12,26 @@ const myPersonSchema = new Schema(
     },
     person_email: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
-    person_address:{
+    person_address: {
       type: String,
     },
-    person_id:{
+    person_id: {
       type: String,
       unique: true,
       required: true
     },
-    person_password:{
-      type:String,
+    person_password: {
+      type: String,
       required: true
     },
-    person_phone:{
-      type:Number,
+    person_phone: {
+      type: Number,
     },
-    person_photo:{
-      type:String,
+    person_photo: {
+      type: String,
     },
     date_of_birth: {
       type: Date,
@@ -42,14 +43,38 @@ const myPersonSchema = new Schema(
     confirmation_token: {
       type: String
     },
-    role:{
-      type:String,
+    front_photo: {
+      data: Buffer,
+      contentType: String
+    },
+    right_photo: {
+      data: Buffer,
+      contentType: String
+    },
+    left_photo: {
+      data: Buffer,
+      contentType: String
+    },
+    is_veterinarian: {
+      studies_certificate: {
+        data: Buffer,
+        contentType: String
+      }
+    },
+    is_instructor: {
+      certification: {
+        data: Buffer,
+        contentType: String
+      }
+    },
+    role: {
+      type: String,
       default: 'user'
     }
   },
 
   {
-    timestamps:true
+    timestamps: true
   }
 
 );
