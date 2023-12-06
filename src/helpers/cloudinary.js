@@ -13,4 +13,11 @@ async function uploadImage(filePath){
   });
 };
 
-module.exports = { uploadImage };
+async function deleteImage(publiCId){
+  await cloudinary.uploader.destroy(publicId);
+}
+
+module.exports = {
+  uploadImage,
+  deleteImage
+};

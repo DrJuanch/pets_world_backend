@@ -4,7 +4,11 @@ const { check, validationResult } = require('express-validator');
 const { ERROR_RESPONSES } = require('../../constansts');
 const { selectRoleController } = require('../../controller/roleSelectionController');
 
-router.post('/', [
+router.post('/',
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: './src/uploads'
+  }), [
   check('email')
     .exists()
     .not()
