@@ -12,7 +12,7 @@ router.post('/',
     tempFileDir: './src/uploads'
   }), [
   check('email')
-    .exists()
+    .exists() 
     .not()
     .isEmpty()
     .withMessage(ERROR_RESPONSES.invalid)
