@@ -25,27 +25,27 @@ const selectRoleController = async (req, res) => {
     }
   } else if (role === 'paseador') {
     try {
-      const { rightPhoto, leftPhoto, frontPhoto } = req.body;
+      const { right_photo, left_photo, front_photo } = req.body;
 
-      if (rightPhoto && leftPhoto && frontPhoto) {
+      if (right_photo && left_photo && front_photo) {
         const updateFields = {};
 
-        if (rightPhoto) {
+        if (right_photo) {
           updateFields.right_photo = {
-            data: Buffer.from(rightPhoto.data, 'base64'),
-            contentType: rightPhoto.contentType
+            data: Buffer.from(right_photo.data, 'base64'),
+            contentType: right_photo.contentType
           };
         }
-        if (leftPhoto) {
+        if (left_photo) {
           updateFields.left_photo = {
-            data: Buffer.from(leftPhoto.data, 'base64'),
-            contentType: leftPhoto.contentType
+            data: Buffer.from(left_photo.data, 'base64'),
+            contentType: left_photo.contentType
           };
         }
-        if (frontPhoto) {
+        if (front_photo) {
           updateFields.front_photo = {
-            data: Buffer.from(frontPhoto.data, 'base64'),
-            contentType: frontPhoto.contentType
+            data: Buffer.from(front_photo.data, 'base64'),
+            contentType: front_photo.contentType
           };
         }
         await personModel.updateOne({ person_email: email }, { role: role });
