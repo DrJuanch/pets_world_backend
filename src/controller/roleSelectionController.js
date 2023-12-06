@@ -9,8 +9,6 @@ const selectRoleController = async (req, res) => {
   if (!user) {
     throw new Error("User not found");
   }
-
-
   if (role === 'user') {
     try {
       const { pet_name, pet_age } = req.body;
@@ -29,7 +27,7 @@ const selectRoleController = async (req, res) => {
     try {
       const { rightPhoto, leftPhoto, frontPhoto } = req.body;
 
-      if (rightPhoto || leftPhoto || frontPhoto) {
+      if (rightPhoto && leftPhoto && frontPhoto) {
         const updateFields = {};
 
         if (rightPhoto) {
@@ -54,7 +52,6 @@ const selectRoleController = async (req, res) => {
         await personModel.updateOne({ person_email: email }, { $set: updateFields });
         user.save();
       }
-
       response.success(req, res, 'Fotos actualizadas exitosamente');
     } catch (err) {
       response.error(req, res, ERROR_RESPONSES.unexpected, 500, err);

@@ -4,7 +4,8 @@ const routes = function (server){
   server.use('/register', require('./register.route'));
   server.use('/passwordRecovery', require('./passwordRecovery.route'));
   server.use('/forgotPassword', require('./forgotPassword.route'));
-  server.use('/roleSelection', require('./roleSelection.route'));
+  server.use('/roleSelectionUser', require('./roleSelectionUser.route'));
+  server.use('/roleSelectionDogWalker', require('./roleSelectionDogWalker.route'))
 };
 
 module.exports = routes;
