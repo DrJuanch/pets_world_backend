@@ -5,7 +5,6 @@ const dataBaseConnection = require('./config/mongo');
 const router = require('./src/v1/routes/routes');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload');
 
 const app = express();
 

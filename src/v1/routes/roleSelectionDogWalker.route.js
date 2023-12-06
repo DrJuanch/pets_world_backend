@@ -3,6 +3,8 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const { ERROR_RESPONSES } = require('../../constansts');
 const { selectRoleController } = require('../../controller/roleSelectionController');
+const fileUpload = require('express-fileupload');
+
 
 router.post('/',
   fileUpload({
