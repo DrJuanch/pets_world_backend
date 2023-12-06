@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const upload = multer();
 const { check, validationResult } = require('express-validator');
 const { ERROR_RESPONSES } = require('../../constansts');
 const { selectRoleController } = require('../../controller/roleSelectionController');
