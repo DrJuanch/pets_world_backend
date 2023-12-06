@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const { check, validationResult } = require('express-validator');
 const { ERROR_RESPONSES } = require('../../constansts');
 const { selectRoleController } = require('../../controller/roleSelectionController');
 
-router.post('/', [
+router.post('/', upload.fields([
+  {name: 'front_picture', maxCount: 1},
+  {name: 'right_picture', maxCount:1},
+  { name: 'left_picture', maxCount: 1 }
+]),[
   check('front_picture')
   .exists()
   .not()
