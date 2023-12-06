@@ -2,6 +2,7 @@ const personModel = require('../models/personModel');
 const petModel = require('../models/petModel');
 const response = require('../helpers/response');
 const { ERROR_RESPONSES } = require('../constansts');
+const { uploadImage } = require('../helpers/cloudinary');
 
 const selectRoleController = async (req, res) => {
   const { role, email } = req.body;
@@ -25,30 +26,24 @@ const selectRoleController = async (req, res) => {
     }
   } else if (role === 'paseador') {
     try {
-      const { front_picture, right_picture, left_picture } = req.files;
-
-      if (front_picture && right_picture && left_picture) {
-        const updateFields = {};
-
-        updateFields.right_photo = {
-          data: Buffer.from(right_picture[0].buffer), // Accede al buffer del archivo
-          contentType: right_picture[0].mimetype // Obtiene el tipo de contenido del archivo
-        };
-        updateFields.left_photo = {
-          data: Buffer.from(left_picture[0].buffer),
-          contentType: left_picture[0].mimetype
-        };
-        updateFields.front_photo = {
-          data: Buffer.from(front_picture[0].buffer),
-          contentType: front_picture[0].mimetype
-        };
-
-        await personModel.updateOne({ person_email: email }, { role: role, ...updateFields });
-        user.save();
-
-        response.success(req, res, 'Fotos actualizadas exitosamente');
-      } else {
-        response.error(req, res, ERROR_RESPONSES.invalid, 400);
+      if (req.files?.front_picture && req.files?.left_picture && req.files?.right_picture) {
+        const frontPhoto = await uploadImage(req.files.front_picture.tempFilePath);
+        const leftPhoto = await uploadImage(req.files.left_picture.tempFilePath);
+        const rightPhoto = await uploadImage(req.files.right_picture.tempFilePath);
+        user.front_photo = {
+          public_id: frontPhoto.public_id,
+          secure_url: frontPhoto.secure_url
+        }
+        user.right_photo = {
+          public_id: rightPhoto.public_id,
+          secure_url: rightPhoto.secure_url
+        }
+        user.left_photo = {
+          public_id: leftPhoto.public_id,
+          secure_url: leftPhoto.secure_url
+        }
+        user.save()
+        response.success(req, res,  'You have uploaded your images', 200);
       }
     } catch (err) {
       response.error(req, res, ERROR_RESPONSES.unexpected, 500, err);

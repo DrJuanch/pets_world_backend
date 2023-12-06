@@ -43,37 +43,28 @@ const myPersonSchema = new Schema(
     confirmation_token: {
       type: String
     },
-    /* front_photo: {
-      data: Buffer,
-      contentType: String
-    },
-    right_photo: {
-      data: Buffer,
-      contentType: String
-    },
-    left_photo: {
-      data: Buffer,
-      contentType: String
-    }, */
     front_photo: {
-      type: String
+      public_id: String,
+      secure_url: String
     },
     right_photo: {
-      type: String
+      public_id: String,
+      secure_url: String
     },
     left_photo: {
-      type: String
+      public_id: String,
+      secure_url: String
     },
     is_veterinarian: {
       studies_certificate: {
-        data: Buffer,
-        contentType: String
+        public_id: String,
+        secure_url: String
       }
     },
     is_instructor: {
       certification: {
-        data: Buffer,
-        contentType: String
+        public_id: String,
+        secure_url: String
       }
     },
     role: {
