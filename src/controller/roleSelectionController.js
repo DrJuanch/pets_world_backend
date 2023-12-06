@@ -25,34 +25,31 @@ const selectRoleController = async (req, res) => {
     }
   } else if (role === 'paseador') {
     try {
-      const { right_photo, left_photo, front_photo } = req.body;
+      const { front_picture, right_picture, left_picture } = req.files;
 
-      if (right_photo && left_photo && front_photo) {
+      if (front_picture && right_picture && left_picture) {
         const updateFields = {};
 
-        if (right_photo) {
-          updateFields.right_photo = {
-            data: Buffer.from(right_photo.data, 'base64'),
-            contentType: right_photo.contentType
-          };
-        }
-        if (left_photo) {
-          updateFields.left_photo = {
-            data: Buffer.from(left_photo.data, 'base64'),
-            contentType: left_photo.contentType
-          };
-        }
-        if (front_photo) {
-          updateFields.front_photo = {
-            data: Buffer.from(front_photo.data, 'base64'),
-            contentType: front_photo.contentType
-          };
-        }
-        await personModel.updateOne({ person_email: email }, { role: role });
-        await personModel.updateOne({ person_email: email }, { $set: updateFields });
+        updateFields.right_photo = {
+          data: Buffer.from(right_picture[0].buffer), // Accede al buffer del archivo
+          contentType: right_picture[0].mimetype // Obtiene el tipo de contenido del archivo
+        };
+        updateFields.left_photo = {
+          data: Buffer.from(left_picture[0].buffer),
+          contentType: left_picture[0].mimetype
+        };
+        updateFields.front_photo = {
+          data: Buffer.from(front_picture[0].buffer),
+          contentType: front_picture[0].mimetype
+        };
+
+        await personModel.updateOne({ person_email: email }, { role: role, ...updateFields });
         user.save();
+
+        response.success(req, res, 'Fotos actualizadas exitosamente');
+      } else {
+        response.error(req, res, ERROR_RESPONSES.invalid, 400);
       }
-      response.success(req, res, 'Fotos actualizadas exitosamente');
     } catch (err) {
       response.error(req, res, ERROR_RESPONSES.unexpected, 500, err);
     }

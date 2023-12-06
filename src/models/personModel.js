@@ -43,7 +43,7 @@ const myPersonSchema = new Schema(
     confirmation_token: {
       type: String
     },
-    front_photo: {
+    /* front_photo: {
       data: Buffer,
       contentType: String
     },
@@ -54,6 +54,15 @@ const myPersonSchema = new Schema(
     left_photo: {
       data: Buffer,
       contentType: String
+    }, */
+    front_photo: {
+      type: String
+    },
+    right_photo: {
+      type: String
+    },
+    left_photo: {
+      type: String
     },
     is_veterinarian: {
       studies_certificate: {
