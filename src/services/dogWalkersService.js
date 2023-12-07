@@ -16,6 +16,20 @@ function getDogWalkers(filterDogWalker) {
   });
 };
 
+async function sendNotification(dogWalkerId, message, user_name, user_phone) {
+  const foundDogWalker = await model.findById(dogWalkerId);
+  const newNotification = {
+    message,
+    user_name,
+    user_phone
+  };
+  foundDogWalker.notification.push(newNotification);
+  const updatedDogWalker = await foundDogWalker.save();
+  return updatedDogWalker;
+}
+
+
 module.exports = {
-  getDogWalkers
+  getDogWalkers,
+  sendNotification
 };

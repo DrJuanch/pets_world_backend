@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const notificationSchema = new Schema(
+  {
+    user_name: {
+      type:String
+    },
+    user_phone:{
+      type: Number
+    },
+    message: {
+      type:String,
+      require: true
+    }
+  }
+)
+
 const myPersonSchema = new Schema(
   {
     person_name: {
@@ -70,6 +85,13 @@ const myPersonSchema = new Schema(
     role: {
       type: String,
       default: 'user'
+    },
+    notification: [
+      notificationSchema
+    ],
+    calification:{
+      type:Number,
+      default:3.5
     }
   },
 

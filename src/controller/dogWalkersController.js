@@ -13,7 +13,24 @@ function getDogWalkers(req, res){
   });
 };
 
+function sendNotification(req, res) {
+  const { dogWalkerId,  user_name, user_phone, message } = req.body;
+  validator.sendNotification(dogWalkerId, message, user_name, user_phone)
+  .then((data) => {
+    response.success(req, res, {data}, 200);
+  })
+  .catch(err => {
+    response.error(req, res, error.ERROR_RESPONSES.intern, 500, err);
+  });
+};
+
+function notifications(req, res) {
+  pass
+}
+
 module.exports = {
-  getDogWalkers
+  getDogWalkers,
+  sendNotification,
+  notifications
 };
 
