@@ -6,6 +6,7 @@ const routes = function (server){
   server.use('/forgotPassword', require('./forgotPassword.route'));
   server.use('/roleSelectionUser', require('./roleSelectionUser.route'));
   server.use('/roleSelectionDogWalker', require('./roleSelectionDogWalker.route'))
+  server.use('/dogWalkers', require('./dogWalkers.route'));
 };
 
 module.exports = routes;

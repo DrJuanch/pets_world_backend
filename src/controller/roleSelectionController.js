@@ -42,6 +42,7 @@ const selectRoleController = async (req, res) => {
           public_id: leftPhoto.public_id,
           secure_url: leftPhoto.secure_url
         }
+        await personModel.updateOne({ person_email: email }, { role: role });
         user.save()
         response.success(req, res,  'You have uploaded your images', 200);
       }
