@@ -14,8 +14,8 @@ const forgotController = async (req, res) => {
       res.send({
         error: 'Inexistente'
       })
-      return
-    }
+      return;
+    };
 
     const tokenForget = await tokenForgot(user)
     const mailOptions = {

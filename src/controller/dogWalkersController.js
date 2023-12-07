@@ -24,13 +24,8 @@ function sendNotification(req, res) {
   });
 };
 
-function notifications(req, res) {
-  console.log('holi');
-}
-
 module.exports = {
   getDogWalkers,
   sendNotification,
-  notifications
 };
 

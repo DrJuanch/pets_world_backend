@@ -27,9 +27,9 @@ const loginController = async (req, res) => {
       if (user.failedLoginAttempts > 0) {
         user.failedLoginAttempts = 0;
         await user.save();
-      }
+      };
       await user.save();
-      return
+      return;
     } else if(!comparing){
       user.failedLoginAttempts += 1;
       user.save();

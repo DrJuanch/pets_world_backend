@@ -7,6 +7,7 @@ const routes = function (server){
   server.use('/roleSelectionUser', require('./roleSelectionUser.route'));
   server.use('/roleSelectionDogWalker', require('./roleSelectionDogWalker.route'))
   server.use('/dogWalkers', require('./dogWalkers.route'));
+  server.use('/userPets', require('./pets.route'));
 };
 
 module.exports = routes;

@@ -11,7 +11,6 @@ function sendNotification(id, message, user_name, user_phone){
     if(!id){
       reject(error.ERROR_RESPONSES.invalid);
     }
-    console.log(user_name, user_phone);
     const result = service.sendNotification(id, message, user_name, user_phone);
     resolve(result);
   });
