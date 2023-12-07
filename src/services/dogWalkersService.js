@@ -4,7 +4,7 @@ function getDogWalkers(filterDogWalker) {
   return new Promise((resolve, reject) => {
     let filter = { role: 'paseador' };
     if (filterDogWalker) {
-      filter = { person_id: filterDogWalker, role: 'paseador' };
+      filter = { _id: filterDogWalker};
     };
     model.find(filter)
       .then(dogWalkers => {

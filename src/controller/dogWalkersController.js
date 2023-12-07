@@ -25,7 +25,7 @@ function sendNotification(req, res) {
 };
 
 function notifications(req, res) {
-  pass
+  console.log('holi');
 }
 
 module.exports = {
